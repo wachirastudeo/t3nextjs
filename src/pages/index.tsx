@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEventHandler,useState } from "react";
 const IndexPage = () => {
   const [todo,setTodo] = useState('') //state ,setState
   const [todos,setTodos] = useState(
@@ -8,17 +8,18 @@ const IndexPage = () => {
       { id: 3, content: 'Todot3' },
     ]
   )
+  const handleTodoFormchange:ChangeEventHandler<HTMLInputElement>=(event)=>{
+    setTodo(event.target.value)
+  }
   const addTodo=()=>{
-    
+    setTodos([{id:todos.length+1,content:todo},...todos])
+    setTodo('')
   }
 
   return (
     <>
-    <input type="text" value={todo}  onChange={event=>setTodo(event.target.value)} />
-    <button onClick={()=>{
-      setTodos([{id:todos.length+1,content:todo},...todos])
-      setTodo('')
-      }}>add</button>
+    <input type="text" value={todo}  onChange={handleTodoFormchange} />
+    <button onClick={addTodo}>add</button>
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>{todo.content}</li>
