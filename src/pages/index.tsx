@@ -5,8 +5,8 @@ interface FooProps{
 }
 const Foo = ({x}:FooProps)=>{
   useEffect(()=>{
-    console.log(x)
-    return ()=> console.log("bye")
+    console.log(x) //undated
+    return ()=> console.log("bye",x) //unmounting
   },[x])
   return <div>Foo</div>
 }
