@@ -52,10 +52,10 @@ const IndexPage = () => {
  
  return(
   <>
-  <h1 >User</h1>
+  <h1 >Users</h1>
  <User></User>
  <br></br>
- <h1>TODO</h1>
+ <h1>TODOs</h1>
  <Todo></Todo>
   </>
  )
