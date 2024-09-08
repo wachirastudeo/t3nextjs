@@ -20,6 +20,8 @@ const TodoForm = ({addTodo}:TodoFormProps) => {
     </>
   );
 };
+
+
 interface Todo{
   id:number,
   content:string
