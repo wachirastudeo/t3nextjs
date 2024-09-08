@@ -7,7 +7,8 @@ interface DataItem {
 }
 
 //react hook
-const useFech =<T extends DataItem>(url:string)=>{   
+  // T คือ generic รับเข้ามาได้ ที่ต้องมีข้อมูลเหมือน DataItem 
+const useFech =<T extends DataItem>(url:string)=>{    
   const [datas,setDatas] = useState<T[]>([])   //type DataItem 
 
   useEffect(()=>{
@@ -31,7 +32,7 @@ interface User{
 const User=()=>{
   const url = "https://jsonplaceholder.typicode.com/users"
   
-   const users= useFech<User>(url)
+   const users= useFech<User>(url) // ส่ง generic interface ประเภทข้อมูล User ไว้กำกับขารับข้อมูลออกมาก
 
   return(
     <>
