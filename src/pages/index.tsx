@@ -1,31 +1,28 @@
-import { ChangeEventHandler,useState } from "react";
-const IndexPage = () => {
-  const [todo,setTodo] = useState('') //state ,setState
-  const [todos,setTodos] = useState(
-    [
-      { id: 1, content: 'Todot1' },
-      { id: 2, content: 'Todot2' },
-      { id: 3, content: 'Todot3' },
-    ]
-  )
-  const handleTodoFormchange:ChangeEventHandler<HTMLInputElement>=(event)=>{
-    setTodo(event.target.value)
-  }
-  const addTodo=()=>{
-    setTodos([{id:todos.length+1,content:todo},...todos])
-    setTodo('')
-  }
 
-  return (
-    <>
-    <input type="text" value={todo}  onChange={handleTodoFormchange} />
-    <button onClick={addTodo}>add</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-    </>
-  );
+import { useEffect, useState } from "react";
+interface FooProps{
+  x:number
+}
+const Foo = ({x}:FooProps)=>{
+  useEffect(()=>{
+    console.log(x)
+    return ()=> console.log("bye")
+  },[x])
+  return <div>Foo</div>
+}
+
+const IndexPage = () => {
+  const  [isShow,setIsShow] = useState(false)
+  const [x,setX] = useState(1)
+ return(
+  <>
+  <button onClick={()=>setIsShow(!isShow)}>Toggle</button>
+  <button onClick={()=>setX(+new Date())}>Change x</button>
+
+  {isShow&&<Foo x={x}></Foo>}
+  </>
+ )
 };
+
 export default IndexPage;
+
