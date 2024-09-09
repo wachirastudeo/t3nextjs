@@ -1,7 +1,9 @@
 import { api } from "~/utils/api";
 const IndexPage=()=>{
      //useQuery() คือดึงข้อมูลออกมาดูอย่างเดียว
-
+    const add = ()=>{}
+    const update =()=>{}
+    const remove = ()=>{}
    const {data:articles,isLoading}= api.article.list.useQuery(); 
    if(isLoading) return <div>Loading</div>
    if(!articles) return <div>No Content</div>
@@ -10,6 +12,7 @@ const IndexPage=()=>{
   <>
   
     <ul>
+    
       {
         articles.map((article) => (
 
