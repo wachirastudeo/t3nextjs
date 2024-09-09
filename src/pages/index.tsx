@@ -18,9 +18,11 @@ const IndexPage=()=>{
       {
         articles.map((article) => (
 
-        <li key={article.id}>{article.title}
+        <li key={article.id} className="flex py-3" >
+          <div className="px-5">          {article.title} 
+          </div>
 
-          <Button onClick={update} >Edit</Button>
+          <Button className="mx-3" onClick={update} >Edit</Button>
           <Button onClick={remove}>Delete</Button>
 
         </li>
