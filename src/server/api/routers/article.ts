@@ -13,6 +13,8 @@ interface Article{
   content:string;
 }
 
+
+
 const articles:Article[]=[
   {id:1,title:'Title#1',excerpt:'Excertp#1',content:'Content#1'},
   {id:2,title:'Title#2',excerpt:'Excertp#2',content:'Content#2'},
@@ -27,5 +29,24 @@ const articles:Article[]=[
 export const articleRouter = createTRPCRouter({
   list:publicProcedure.query(()=>{  //procedure ใครจะเข้ามาอ่านก็ได้ 
       return articles
-  })  
+  }),
+  add:publicProcedure.input(z.object({
+    title:z.string(),
+    excerpt:z.string(),
+    content:z.string()
+
+  })).mutation(({input})=>{
+    const article ={id:articles.length+1,...input}
+    articles.push(article)
+    return article
+
+  }),
+  update:publicProcedure.mutation(()=>{
+
+  }),
+  remove:publicProcedure.mutation(()=>{
+
+  }),
+
+  
 });
