@@ -1,18 +1,16 @@
-import { fontFamily } from "tailwindcss/defaultTheme";
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { type Config } from 'tailwindcss';
 import colors from 'tailwindcss/colors';
 
 export default {
+  darkMode: 'class',
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
     './node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
-      },
       colors: {
         primary: colors.blue,
         secondary: colors.sky,

@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-export interface ButtonProps {
+export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   color?:
     | 'primary'
     | 'secondary'
@@ -10,50 +10,46 @@ export interface ButtonProps {
     | 'warn'
     | 'info'
     | 'default';
-  children: ReactNode;
+  align?: 'left' | 'center' | 'right';
 }
-export function Button({ color = 'default', children }: ButtonProps) {
+const Button = ({
+  color = 'default',
+  align = 'left',
+  children,
+  disabled,
+  className,
+  ...props
+}: ButtonProps) => {
   const colorClass = {
-    primary: 'bg-primary-500',
-    secondary: 'bg-secondary-500',
-    success: 'bg-success-500',
-    danger: 'bg-danger-500',
-    warn: 'bg-warn-500',
-    info: 'bg-info-500',
-    default: 'bg-neutral-500',
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+    success: 'btn-success',
+    danger: 'btn-danger',
+    warn: 'btn-warn',
+    info: 'btn-info',
+    default: 'btn-default',
   }[color];
-  const hoverClass = {
-    primary: 'hover:bg-primary-700',
-    secondary: 'hover:bg-secondary-700',
-    success: 'hover:bg-success-700',
-    danger: 'hover:bg-danger-700',
-    warn: 'hover:bg-warn-700',
-    info: 'hover:bg-info-700',
-    default: 'hover:bg-neutral-700',
-  }[color];
-
-  const focusClass = {
-    primary: 'focus:bg-primary-700',
-    secondary: 'focus:bg-secondary-700',
-    success: 'focus:bg-success-700',
-    danger: 'focus:bg-danger-700',
-    warn: 'focus:bg-warn-700',
-    info: 'focus:bg-info-700',
-    default: 'focus:bg-neutral-700',
-  }[color];
-
+  const alignClass = {
+    left: '',
+    center: 'mx-auto',
+    right: 'ml-auto',
+  }[align];
   return (
     <button
       className={twMerge(
-        'inline-block rounded px-6 pt-2.5 pb-2 uppercase leading-normal text-white transition duration-150 ease-in-out focus:outline-none',
+        'btn',
         colorClass,
-        hoverClass,
-        focusClass,
+        'block',
+        alignClass,
+        disabled ? 'cursor-not-allowed' : 'cursor-pointer',
+        className,
       )}
+      disabled={disabled}
+      {...props}
     >
       {children}
     </button>
   );
-}
+};
 
 export default Button;

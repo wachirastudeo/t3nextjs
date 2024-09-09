@@ -1,3 +1,4 @@
+import Button from "~/features/ui/components/Button";
 import { api } from "~/utils/api";
 const IndexPage=()=>{
      //useQuery() คือดึงข้อมูลออกมาดูอย่างเดียว
@@ -10,13 +11,19 @@ const IndexPage=()=>{
 
   return(
   <>
+      <Button color='primary'>add</Button>
   
-    <ul>
+      <ul>
     
       {
         articles.map((article) => (
 
-        <li key={article.id}>{article.title}</li>
+        <li key={article.id}>{article.title}
+
+          <Button onClick={update} >Edit</Button>
+          <Button onClick={remove}>Delete</Button>
+
+        </li>
 
         ))}
     </ul>
