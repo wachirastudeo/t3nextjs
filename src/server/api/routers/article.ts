@@ -1,11 +1,8 @@
 import { TRPCError } from "@trpc/server";
-import { arch } from "os";
-import { title } from "process";
 import { z } from "zod";
 
 import {
   createTRPCRouter,
-  protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
 
