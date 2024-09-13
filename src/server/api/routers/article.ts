@@ -33,6 +33,9 @@ export const articleRouter = createTRPCRouter({
   list:publicProcedure.query(()=>{  //procedure ใครจะเข้ามาอ่านก็ได้ 
       return articles
   }),
+  byId: publicProcedure.input(z.number()).query(({input})=>{
+      return articles.find((article)=>article.id === input)
+  }),
   add:publicProcedure.input(z.object({
     title:z.string(),
     excerpt:z.string(),

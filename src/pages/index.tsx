@@ -1,17 +1,64 @@
 import Button from "~/features/ui/components/Button";
 import { api } from "~/utils/api";
+
 const IndexPage=()=>{
      //useQuery() คือดึงข้อมูลออกมาดูอย่างเดียว
-    const add = ()=>{}
-    const update =()=>{}
-    const remove = ()=>{}
-   const {data:articles,isLoading}= api.article.list.useQuery(); 
+
+  const utils = api.useUtils(); // use context เก่า ให้เก็บข้อมูลไว้
+  const list = utils.article.list // เก็บไว้ใน list 
+   const {data:articles,isLoading}= api.article.list.useQuery();  // คืนมาเป็น data
+
+  const { mutateAsync:addArticle } = api.article.add.useMutation({
+    onSuccess(){ // ทำเสร็จให้อัพเดทค่าใหม่
+      list.invalidate()
+    }
+  }) // คืนมาเป็น mutate กับ mutate async รอทำเสร็จแล้วทำอย่างอื่นต่อ
+  const { mutateAsync:updateArticle } = api.article.update.useMutation(
+    {
+      onSuccess(){
+        list.invalidate()
+      }
+    }
+  )
+  const { mutateAsync:removeArticle } = api.article.remove.useMutation({
+    onSuccess(){
+      list.invalidate()
+    }
+  })
+
+  const dateString = new Date().toISOString();
+  const add = async () => {
+    await addArticle({
+      title: `my title: ${dateString}`,
+      excerpt: `my excerpt: ${dateString}`,
+      content: `my content: ${dateString}`,
+    });
+  };
+
+  const update=async (id:number)=>{
+    updateArticle(
+      {
+        id,
+        data:{
+         title: `my title: ${dateString}`,
+      excerpt: `my excerpt: ${dateString}`,
+      content: `my content: ${dateString}`,
+        }
+      }
+    )
+  }
+  const remove=async (id:number)=>{
+    removeArticle(id)
+
+  }
+
+
    if(isLoading) return <div>Loading</div>
    if(!articles) return <div>No Content</div>
 
   return(
   <>
-      <Button color='primary'>add</Button>
+      <Button color='primary' onClick={add}>add</Button>
   
       <ul>
     
@@ -22,8 +69,8 @@ const IndexPage=()=>{
           <div className="px-5">          {article.title} 
           </div>
 
-          <Button className="mx-3" onClick={update} >Edit</Button>
-          <Button onClick={remove}>Delete</Button>
+          <Button className="mx-3" onClick={() => update(article.id)} >Edit</Button>
+          <Button  onClick={() => remove(article.id)}>Delete</Button>
 
         </li>
 
