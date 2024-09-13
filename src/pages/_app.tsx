@@ -2,6 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { api } from "~/utils/api";
 
