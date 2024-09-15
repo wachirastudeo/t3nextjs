@@ -11,7 +11,7 @@ import "~/styles/globals.css";
 import { NextPage } from "next";
 import { ReactElement, ReactNode } from "react";
 const queryClient = new QueryClient();
-type NextPageWithLayout< P = object,IP=object> = NextPage<P,IP> &{
+export type NextPageWithLayout< P = object,IP=object> = NextPage<P,IP> &{
   getLayout?:(Prop:{children:ReactNode})=>ReactElement
 }
 interface AppPropsWithLayout extends AppProps<{session:Session | null}>{
