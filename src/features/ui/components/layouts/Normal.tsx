@@ -1,18 +1,23 @@
-import { ReactNode } from "react";
+import { type ReactNode } from 'react';
+import Navbar from '../Navbar';
 
-export interface LaytouProps{ // export interface ไปด้วยให้คนอื่นใช้ได้
-    children:ReactNode;  // ของต่างๆ ใน  react 
-
+export interface LayoutProps {
+  children: ReactNode;
 }
 
-const Layout = ({children}) => {
-    return ( 
-        <>
-        <header>Header </header>
-        <main>{children}</main>
-        <footer>Footer</footer>
-        </>
-     );
-}
- 
+const Layout = ({ children }: LayoutProps) => {
+  return (
+    <>
+      <Navbar>
+        <Navbar.Navbrand></Navbar.Navbrand>
+        <Navbar.NavItem to="/admin">Admin</Navbar.NavItem>
+        <Navbar.NavItem to="/leaves">Leaves</Navbar.NavItem>
+        <Navbar.NavItem to="/announcements">Announcements</Navbar.NavItem>
+        <Navbar.NavItem to="/articles">Blog</Navbar.NavItem>
+      </Navbar>
+      <main>{children}</main>
+    </>
+  );
+};
+
 export default Layout;
