@@ -1,5 +1,10 @@
+import Layout from "~/features/ui/components/layouts/Normal";
+
 const IndexPage = () => {
-    return <div>index Page </div>;
+    return (
+    <Layout>
+        Detail Page
+    </Layout>);
 }
  
 export default IndexPage;
