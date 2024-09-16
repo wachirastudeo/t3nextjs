@@ -1,5 +1,5 @@
 import { api } from "~/utils/api"; // import api ให้ใช้งานได้
-import Loading from "../../loading";
+import Loading from "~/features/ui/components/Loading";
 const LeaveList = () => {
     const {data:leaves,isLoading}  =api.leave.list.useQuery() // เรียกใช้ leave ผ่าน api 
     if(isLoading)return<Loading></Loading>
