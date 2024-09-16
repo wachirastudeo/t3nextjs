@@ -1,5 +1,6 @@
 const ArticleDetail = () => {
-    return ( <div>
+    return ( 
+    <div>
     Detail
     </div> );
 }

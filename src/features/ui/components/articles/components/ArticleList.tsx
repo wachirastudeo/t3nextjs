@@ -9,7 +9,7 @@ const ArticleList = () => {
     if(!articles) return <>Not Found</>
 
     return (
-        <div>
+        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ">
             {
                 articles.map(article=> <ArticleItem key={article.id} {...article}></ArticleItem>)
             }
