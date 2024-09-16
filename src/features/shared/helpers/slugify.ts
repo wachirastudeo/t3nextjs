@@ -1,0 +1,3 @@
+export slugify =(str:string)=>{
+    
+}

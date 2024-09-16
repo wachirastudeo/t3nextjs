@@ -1,7 +1,7 @@
 const ArticleDetail = () => {
-    return ( <>
+    return ( <div>
     Detail
-    </> );
+    </div> );
 }
  
 export default ArticleDetail;
