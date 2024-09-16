@@ -1,5 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
+import { slugify } from "~/features/shared/helpers/slugify";
 
 import {
   createTRPCRouter,
@@ -44,7 +45,7 @@ export const articleRouter = createTRPCRouter({
   
 
   })).mutation(({input})=>{
-    const article ={id:articles.length+1,...input}
+    const article ={id:articles.length+1,...input,slug:slugify(input.title)}
     articles.push(article)
     return article
 
@@ -66,7 +67,11 @@ export const articleRouter = createTRPCRouter({
     const article =  articles.find(article => article.id === id)
     if (!article) throw new TRPCError({ code: 'NOT_FOUND'})
     
-    if(data.title) article.title = data.title;
+    if(data.title) {
+      article.title = data.title;
+      article.slug=slugify(article.title)
+
+    }
     if(data.excerpt) article.excerpt = data.excerpt;
     if(data.content) article.content = data.content;
 
