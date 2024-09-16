@@ -12,8 +12,6 @@ const AnnouncementDetail = () => {
     <Card>
     {announcement.title}
     {announcement.title}
-    {announcement.title}
-    {announcement.title}
 
 
     </Card> );
