@@ -11,7 +11,8 @@ const AnnouncementDetail = () => {
     return ( 
     <Card>
     {announcement.title}
-    
+    {announcement.title}
+
     </Card> );
 }
  
