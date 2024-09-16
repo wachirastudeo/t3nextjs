@@ -1,5 +1,6 @@
 import Badge from "~/features/ui/components/Badge";
 import { Leave } from "../types";
+import { toDateString } from "~/features/shared/helpers/date";
 
 export type LeaveItemProps  = Leave;
 
@@ -16,12 +17,12 @@ const statusColor = (status:Leave['status'])=>{
 }
 
 const LeaveItem = ({id,reason,status,leaveDate}:LeaveItemProps) => {
-    return (<>
+    return (<div>
       <Badge color={statusColor(status)}>{status}</Badge>
       <p>{reason}</p>
-      <div>{leaveDate}</div>
+      <div>{toDateString(leaveDate)}</div>
 
-    </>  );
+    </div>  );
 }
  
 export default LeaveItem;

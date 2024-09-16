@@ -7,10 +7,10 @@ const LeaveList = () => {
     if(!leaves)return<div>Not found</div>
 
     return (
-         <>
+         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 ">
     {leaves.map(leave=><LeaveItem key={leave.id}{...leave}></LeaveItem>)}
 
-    </> );
+    </div> );
 }
  
 export default LeaveList;
