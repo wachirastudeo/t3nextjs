@@ -1,6 +1,6 @@
 import { api } from "~/utils/api";
 import Loading from "../../Loading";
-import AnnouncementItem from "./Announcementitem";
+import AnnouncementItem from "./AnnouncementItem";
 
 
 const AnnouncementList = () => {
