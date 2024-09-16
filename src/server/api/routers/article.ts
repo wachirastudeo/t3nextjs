@@ -18,11 +18,11 @@ interface Article{
 
 
 const articles:Article[]=[
-  {id:1,title:'Title#1',excerpt:'Excertp#1',content:'Content#1' ,slug:'Slug#1'},
-  {id:2,title:'Title#2',excerpt:'Excertp#2',content:'Content#2',slug:'Slug#2'},
-  {id:3,title:'Title#3',excerpt:'Excertp#3',content:'Content#3',slug:'Slug#3'},
-  {id:4,title:'Title#4',excerpt:'Excertp#4',content:'Content#4',slug:'Slug#4'},
-  {id:5,title:'Title#5',excerpt:'Excertp#5',content:'Content#5',slug:'Slug#5'},
+  {id:1,title:'Title#1',excerpt:'Excertp#1',content:'Content#1' ,slug:'Title-1'},
+  {id:2,title:'Title#2',excerpt:'Excertp#2',content:'Content#2',slug:'Title-2'},
+  {id:3,title:'Title#3',excerpt:'Excertp#3',content:'Content#3',slug:'Title-3'},
+  {id:4,title:'Title#4',excerpt:'Excertp#4',content:'Content#4',slug:'Title-4'},
+  {id:5,title:'Title#5',excerpt:'Excertp#5',content:'Content#5',slug:'Title-5'},
 
 ]
 // fontend => api.post.hello 
