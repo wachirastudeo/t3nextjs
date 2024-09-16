@@ -1,6 +1,7 @@
 import { articleRouter } from "~/server/api/routers/article";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { leaveRouter } from "./routers/leave";
+import { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 
 /**
  * This is the primary router for your server.
@@ -15,6 +16,8 @@ export const appRouter = createTRPCRouter({   // สร้าง router เพ�
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
+export type RouterInput = inferRouterInputs<AppRouter>;  // ตรวจสอบชนิดข้อมูล router 
+export type RouterOutput = inferRouterOutputs<AppRouter>;
 
 /**
  * Create a server-side caller for the tRPC API.
@@ -24,3 +27,4 @@ export type AppRouter = typeof appRouter;
  *       ^? Post[]
  */
 export const createCaller = createCallerFactory(appRouter);
+

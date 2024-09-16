@@ -17,9 +17,9 @@ interface Leave{
 
 
 const leave:Leave[]=[
-  {id:1,reason:'reason  #1',status:'PENDING',leaveDate:new Date().toDateString()},
-  {id:2,reason:'reason  #2',status:'APPROVED',leaveDate:new Date().toDateString()},
-  {id:3,reason:'reason  #3',status:'REJECTED',leaveDate:new Date().toDateString()},
+  {id:1,reason:'reason  #1',status:'PENDING',leaveDate:new Date().toISOString()},
+  {id:2,reason:'reason  #2',status:'APPROVED',leaveDate:new Date().toISOString()},
+  {id:3,reason:'reason  #3',status:'REJECTED',leaveDate:new Date().toISOString()},
 
 ]
 
