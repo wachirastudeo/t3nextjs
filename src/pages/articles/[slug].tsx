@@ -34,10 +34,10 @@ export const getStaticPaths:GetStaticPaths = async ()=>{
         }
 }
  
-const DetailPage = (props:InferGetStaticPropsType<typeof getStaticProps> ) => {
+const DetailPage = ({slug}:InferGetStaticPropsType<typeof getStaticProps> ) => {
     const router = useRouter()
     if(router.isFallback) return <Loading></Loading>
-    return <ArticleDetail slug={props.slug}></ArticleDetail>
+    return <ArticleDetail slug={slug}></ArticleDetail>
 }
  
 DetailPage.getLayout = Layout
