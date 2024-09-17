@@ -55,6 +55,8 @@ const [currentId,setCurrentId] = useState(-1)
       title: `my title: ${dateString}`,
       excerpt: `my excerpt: ${dateString}`,
       content: `my content: ${dateString}`,
+      image: `my content: ${dateString}`,
+
     });
   };
 
