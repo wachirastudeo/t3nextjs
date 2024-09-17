@@ -2,10 +2,14 @@ import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import Loading from "../../Loading";
 import Card from "../../Card";
+import { Article } from "../types";
+interface ArticleDetailProps{
+    slug:Article['slug']
+}
 
-const ArticleDetail = () => {
-    const router = useRouter() // ดึงค่า ตรง url ได้ ไว้ทำการ query
-    const {data:article,isLoading} = api.article.bySlug.useQuery(router.query.slug as string);
+const ArticleDetail = ({slug}:ArticleDetailProps) => {
+    // const router = useRouter() // ดึงค่า ตรง url ได้ ไว้ทำการ query
+    const {data:article,isLoading} = api.article.bySlug.useQuery(slug); //router.query.slug as string
     if(isLoading)return<Loading></Loading>
     if(!article) return<>Not Found</>
     return ( 
