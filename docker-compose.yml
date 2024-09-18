@@ -1,0 +1,10 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16.4-alpine3.20
+    ports:
+      - '9111:5432' # Maps port 9111 on the host to port 5432 in the container
+    environment:
+      POSTGRES_USER: myapp
+      POSTGRES_PASSWORD: example
