@@ -1,6 +1,6 @@
 import { prisma } from "~/server/db"
 import {faker} from '@faker-js/faker'
-import { Prisma } from "@prisma/client"
+import { Leave, LeaveStatus, Prisma } from "@prisma/client"
 
 async function main(){
 
@@ -21,6 +21,7 @@ async function main(){
 
 // facke create user 10 user  use facker loop where email
     const numOfUser =10  
+    const userIds:number[]= [admin.id]
     for(let i=0;i<numOfUser;i++){
 
         const createUserInput:Prisma.UserCreateInput ={
@@ -38,6 +39,37 @@ async function main(){
             create:createUserInput,  // สร้างจาก facker ด้านบน
             
             
+        })
+        userIds.push(user.id)
+    }
+
+    const numOfLeave = 100 
+ 
+    
+    for(let i=0;i<numOfLeave;i++){
+        const status:LeaveStatus = faker.helpers.arrayElement(['PENDING','APPROVED','REJECTED'])
+        const userId = faker.helpers.arrayElement(userIds)
+        const leaveDate = faker.date.future().toISOString()
+        const createLeaveInput:Prisma.LeaveCreateInput ={
+            leaveDate:leaveDate,
+            reason:faker.lorem.paragraph(),
+            status:status,
+            user:{
+                connect:{id:faker.helpers.arrayElement(userIds)}
+            },
+            rejectionReason:status ==='REJECTED'?faker.lorem.paragraph():undefined,
+
+    
+        }
+        await prisma.leave.upsert({
+            where:{
+                userId_leaveDate:{
+                    userId,
+                    leaveDate
+                }
+            },
+            update:{},
+            create:createLeaveInput
         })
     }
 

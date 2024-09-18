@@ -16,7 +16,7 @@ datasource db {
 
 enum LeaveStatus {
     PENDING
-    APPPROVED
+    APPROVED
     REJECTED
 }
 
