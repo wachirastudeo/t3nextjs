@@ -27,15 +27,17 @@ enum Role {
 }
 
 model User {
-    id       Int      @id @default(autoincrement())
-    name     String
-    email    String   @unique
-    image    String?
-    password String
-    role     Role     @default(MEMBER)
-    createAt DateTime @default(now())
-    updateAt DateTime @default(now())
-    leaves   Leave[] // user มีได้หลาย leave
+    id            Int            @id @default(autoincrement())
+    name          String
+    email         String         @unique
+    image         String?
+    password      String
+    role          Role           @default(MEMBER)
+    createAt      DateTime       @default(now())
+    updateAt      DateTime       @default(now())
+    leaves        Leave[] // user มีได้หลาย leave
+    articles      Article[] // article 
+    announcements Announcement[]
 }
 
 model Leave {
@@ -50,4 +52,29 @@ model Leave {
     user            User        @relation(fields: [userId], references: [id]) // โยงความสัมพันธ์ไปยัง user ผ่าน userId เค้ากับ id
 
     @@unique([userId, leaveDate]) // user คนเดิมไม่สามารถสร้างวันลาซ้ำกันได้
+}
+
+model Article {
+    id       Int      @id @default(autoincrement())
+    title    String
+    slug     String   @unique
+    excerpt  String
+    content  String
+    image    String
+    userId   Int
+    createAt DateTime @default(now())
+    updateAt DateTime @default(now())
+    user     User     @relation(fields: [userId], references: [id])
+}
+
+model Announcement {
+    id       Int      @id @default(autoincrement())
+    title    String
+    slug     String   @unique
+    excerpt  String
+    content  String
+    userId   Int
+    createAt DateTime @default(now())
+    updateAt DateTime @default(now())
+    user     User     @relation(fields: [userId], references: [id])
 }

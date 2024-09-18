@@ -15,7 +15,16 @@ import {
 //backend สร้างแล้วให้ fontend ไปใช้ชื่อเดียวกัน
 export const leaveRouter = createTRPCRouter({
   list:publicProcedure.query(({ctx})=>{  //procedure ใครจะเข้ามาอ่านก็ได้ 
-      const leave = ctx.prisma.leave.findMany();
+      const leave = ctx.prisma.leave.findMany({
+        select:{
+          id:true,
+          reason:true,
+          leaveDate:true,
+          status:true,
+        },orderBy:{
+          createAt:'desc'
+        }
+      });
       return leave
   }),
  

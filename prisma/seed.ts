@@ -43,6 +43,7 @@ async function main(){
         userIds.push(user.id)
     }
 
+    //create leave 
     const numOfLeave = 100 
  
     
@@ -72,6 +73,12 @@ async function main(){
             create:createLeaveInput
         })
     }
+
+    //create articles 
+
+    const numOfArticle = 20 
+    
+
 
 }
 main().then(async()=>{    // หลังเชื่อมต่อจบก็ตัดการเชื่อมต่อ
