@@ -13,36 +13,41 @@ datasource db {
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
 }
+
 enum LeaveStatus {
     PENDING
     APPPROVED
     REJECTED
 }
+
 enum Role {
     ADMIN
     MANAGER
     MEMBER
 }
 
-model User{
-    id Int @id @default(autoincrement())
-    name String
-    email String @unique
-    image String?
+model User {
+    id       Int      @id @default(autoincrement())
+    name     String
+    email    String   @unique
+    image    String?
     password String
-    role Role @default(MEMBER)
+    role     Role     @default(MEMBER)
     createAt DateTime @default(now())
     updateAt DateTime @default(now())
+    leaves   Leave[] // user มีได้หลาย leave
 }
 
-model Leave{
-    id Int @id @default(autoincrement())
-    status LeaveStatus @default(PENDING) 
-    reason String
-    leaveDate String
-    rejectionReason String? 
-    userId Int 
-    createAt DateTime @default(now())
-    updateAt DateTime @default(now())
+model Leave {
+    id              Int         @id @default(autoincrement())
+    status          LeaveStatus @default(PENDING)
+    reason          String
+    leaveDate       String
+    rejectionReason String?
+    userId          Int
+    createAt        DateTime    @default(now())
+    updateAt        DateTime    @default(now())
+    user            User        @relation(fields: [userId], references: [id]) // โยงความสัมพันธ์ไปยัง user ผ่าน userId เค้ากับ id
 
+    @@unique([userId, leaveDate]) // user คนเดิมไม่สามารถสร้างวันลาซ้ำกันได้
 }

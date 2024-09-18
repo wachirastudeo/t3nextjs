@@ -25,5 +25,8 @@
   "[typescriptreact]": {
     "editor.formatOnSave": false
   },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "files.eol": "\n"
 }
