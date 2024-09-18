@@ -83,7 +83,7 @@ async function main() {
       slug: slugify(title),
       excerpt: faker.lorem.paragraph(),
       content: faker.lorem.paragraphs({ min: 3, max: 10 }),
-      image: faker.image.avatar(),
+      image: faker.image.url(),
       user: {
         connect: {
           id: faker.helpers.arrayElement(userIds),

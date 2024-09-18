@@ -4,7 +4,7 @@ import ArticleItem from "./ArticleItem";
 
 const ArticleList = () => {
 
-    const {data:articles ,isLoading} = api.article.list.useQuery()
+    const {data:articles ,isLoading} = api.article.list.useQuery();
     if(isLoading)return <Loading></Loading>
     if(!articles) return <>Not Found</>
 
