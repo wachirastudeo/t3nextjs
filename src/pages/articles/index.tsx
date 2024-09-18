@@ -10,6 +10,8 @@ export const getStaticProps:GetStaticProps= async ()=>{
       props:{
         trpcState:helpers.dehydrate(),
       }
+      ,
+      revalidate:60*5,
     }
 
 }
