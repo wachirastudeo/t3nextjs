@@ -14,8 +14,8 @@ import {
  // api.article.[list, byId,update,delete,add] สร้างชื่อตามที่ต้องการได้
 //backend สร้างแล้วให้ fontend ไปใช้ชื่อเดียวกัน
 export const leaveRouter = createTRPCRouter({
-  list:publicProcedure.query(({ctx})=>{  //procedure ใครจะเข้ามาอ่านก็ได้ 
-      const leave = ctx.prisma.leave.findMany({
+  list:publicProcedure.query(async({ctx})=>{  //procedure ใครจะเข้ามาอ่านก็ได้ 
+      const leave = await ctx.prisma.leave.findMany({
         select:{
           id:true,
           reason:true,
