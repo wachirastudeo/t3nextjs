@@ -17,6 +17,8 @@ export const getStaticProps:GetStaticProps= async ()=>{
 }
 
 
+
+
 const IndexPage = () => {
   return <ArticleList></ArticleList>;
 };
