@@ -18,7 +18,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ['avatars.githubusercontent.com','cloudflare-ipfs.com','picsum.photos'], 
+    domains: ['avatars.githubusercontent.com','cloudflare-ipfs.com','picsum.photos','loremflickr.com'], 
     // Add other domains if needed
   },
   transpilePackages: ["geist"],

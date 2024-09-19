@@ -85,6 +85,7 @@ export const articleRouter = createTRPCRouter({
      
       
     })
+    if(!article)throw new TRPCError({code:'NOT_FOUND'})
 
    
 
